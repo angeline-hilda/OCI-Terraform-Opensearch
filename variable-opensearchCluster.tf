@@ -175,8 +175,8 @@ variable "outbound_clusters" {
     display_name        = string
     seed_cluster_id     = string
     is_skip_unavailable = bool
-    mode               = string
-    ping_schedule      = string
+    mode                = string
+    ping_schedule       = string
   }))
   default = []
 }

@@ -41,7 +41,7 @@ module "opensearch_cluster" {
   opensearch_cluster_security_mode = var.opensearch_cluster_security_mode
 
   outbound_cluster_is_enabled = var.outbound_cluster_is_enabled
-  outbound_clusters = var.outbound_clusters
+  outbound_clusters           = var.outbound_clusters
 
 
   #master_node_host_bare_metal_shape = var.master_node_host_bare_metal_shape

@@ -43,35 +43,35 @@ locals {
 
 module "oci_opensearch_monitoring" {
 
-    depends_on = [ module.opensearch_cluster ]
+  depends_on = [module.opensearch_cluster]
 
   for_each = local.opensearch_metrics
 
-  source = "./monitoring"
-  compartment_id            = var.compartment_id
-  destinations              = var.destinations
-  alarm_display_name = "${var.opensearch_display_name }-${each.key}"
+  source             = "./monitoring"
+  compartment_id     = var.compartment_id
+  destinations       = var.destinations
+  alarm_display_name = "${var.opensearch_display_name}-${each.key}"
 
-  alarm_is_enabled = var.alarm_is_enabled
-  alarm_metric_compartment_id     = var.compartment_id
-  alarm_namespace = var.alarm_namespace
-  alarm_query = each.value.query
-  alarm_severity = each.value.severity
+  alarm_is_enabled            = var.alarm_is_enabled
+  alarm_metric_compartment_id = var.compartment_id
+  alarm_namespace             = var.alarm_namespace
+  alarm_query                 = each.value.query
+  alarm_severity              = each.value.severity
 
   # Optional parameters
-  alarm_summary     = each.value.summary
-  alarm_body         = "Alert: ${each.key} crossed threshold."
+  alarm_summary = each.value.summary
+  alarm_body    = "Alert: ${each.key} crossed threshold."
   #defined_tags      = var.alarm_defined_tags
   #freeform_tags     = var.alarm_freeform_tags
-  alarm_message_format    = var.alarm_message_format
-  alarm_resolution        = var.alarm_resolution
-  alarm_resource_group    = var.alarm_resource_group
-  alarm_pending_duration  = var.alarm_pending_duration
+  alarm_message_format      = var.alarm_message_format
+  alarm_resolution          = var.alarm_resolution
+  alarm_resource_group      = var.alarm_resource_group
+  alarm_pending_duration    = var.alarm_pending_duration
   alarm_suppression_enabled = var.alarm_suppression_enabled
-  
+
   providers = {
     oci             = oci
     oci.home_region = oci.home_region
   }
-  
+
 }
