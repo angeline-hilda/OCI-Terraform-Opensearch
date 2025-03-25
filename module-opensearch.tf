@@ -27,9 +27,9 @@ module "opensearch_cluster" {
 
   #networking 
   subnet_compartment_id = var.db_subnet_compartment_id
-  subnet_id             = var.db_subnet_id
+  subnet_id             = module.network.db_subnet_id
   vcn_compartment_id    = var.vcn_compartment_id
-  vcn_id                = var.vcn_id
+  vcn_id                = module.network.vcn_id
 
 
   maintenance_details_notification_email_ids = var.maintenance_details_notification_email_ids
