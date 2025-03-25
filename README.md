@@ -1,6 +1,6 @@
 # Oracle Cloud Infrastructure (OCI) Terraform Module for OCI Search Service with OpenSearch
 
-This OpenTofu/Teraform module provisions and configures OCI Search with OpenSearch with monitoring and alarms using OCI Monitoring Service. 
+This OpenTofu/Teraform module provisions and configures OCI Search with OpenSearch. It provisions an OpenSearch Cluster, configures nodes, sets up networking and monitoring and alarms service.
 
 ## Pre-requisites
 Ensure you have the following before using this module:
@@ -8,8 +8,6 @@ Ensure you have the following before using this module:
 - An Oracle Cloud Infrastruture(OCI) Account
 - [Configure OCI CLI](https://docs.oracle.com/en-us/iaas/Content/dev/terraform/tutorials/tf-provider.htm#prepare) with appropriate credentials
 - Required [IAM policies](https://docs.oracle.com/en-us/iaas/Content/search-opensearch/Concepts/ocisearchpermissions.htm)
-
-
 
 
 ## Using with Terraform
@@ -49,8 +47,36 @@ To destroy the created resources, use:
 ```sh
 tofu destroy # or terraform destroy
 ```
+
+## Connect to OCI Search Service
+1. SSH into the Jump Server
+
+```
+ssh -i <ssh-privatekey> opc@<jumpserver-public-ip>
+```
+2. Run one of the following commands
+
+```
+curl https://<opensearch-cluster-endpoint>:9200 -u username:password
+```
+
+
+```
+curl https://<openserach-private-ip>:9200 --insecure -u username:password
+```
+
+## Connect to OpenSearch Dashboards
+1. From your local machine, through port forwarding.  Open a new Terminal window and run the following command:
+
+```
+ssh -C -v -t -L 127.0.0.1:5601:<opensearch-dashboard-private-ip>:5601 -L 127.0.0.1:9200:<opensearch-private-ip>:9200 opc@<jumpserver-public-ip> -i <ssh-private-key>
+```
+
+2. Access https://localhost:5601 from your browser.
+
 ## Documentation
 - [OCI Search with OpenSearch](https://docs.oracle.com/en-us/iaas/Content/search-opensearch/Concepts/ociopensearch.htm#ociopensearch)
+- [Search and Visualize data using OCI Search with OpenSearch](https://docs.oracle.com/en/learn/oci-opensearch/index.html#introduction)
 - [OCI Monitoring](https://docs.oracle.com/en-us/iaas/Content/Monitoring/Concepts/monitoringoverview.htm)
 - [OCI Notifications](https://docs.oracle.com/en-us/iaas/Content/Notification/Concepts/notificationoverview.htm)
 - [OpenSearch Cluster Metrics](https://docs.oracle.com/en-us/iaas/Content/search-opensearch/ociopensearchmetrics.htm)
