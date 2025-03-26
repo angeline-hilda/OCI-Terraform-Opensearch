@@ -4,6 +4,8 @@
 *.tfstate.lock.info
 
 *.tfvars
+*.tfvars.txt
+*.txt
 
 #commented txt file
 *.txt
