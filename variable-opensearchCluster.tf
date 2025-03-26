@@ -3,18 +3,19 @@
 variable "db_subnet_compartment_id" {
 
 }
-variable "db_subnet_id" {
 
-}
 
 variable "vcn_compartment_id" {
 
 }
-
+/*
 variable "vcn_id" {
 
 }
+variable "db_subnet_id" {
 
+}
+*/
 
 variable "opensearch_version" {
 
