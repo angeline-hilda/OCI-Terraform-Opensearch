@@ -93,7 +93,18 @@ opensearch_display_name = "navi-opensearch"
 
 # Cluster creation fails if the username is ADMIN
 master_user_name = "ABCXYZ"
-master_user_password = "Welcome123##"
+
+
+/*
+Download this jar (oci-crypto-common-1.0.0-SNAPSHOT.jar) from https://objectstorage.uk-london-1.oraclecloud.com/p/ZcVUX2JmCqwxgS9szgYfk1wyf7UwzxAHyXb2xwDFX5boKrd-JrvOnC7vzRttQxio/n/idee4xpu3dvm/b/os-ops-tools/o/oci-crypto-common-1.0.0-SNAPSHOT.jar
+Decide a password.
+java -jar oci-crypto-common-1.0.0-SNAPSHOT.jar pbkdf2_stretch_1000 <password-in-plain-text>
+Capture the password hash generated
+*/
+
+# hash password for the plain text password: Welcome123## 
+# use the plain text to login to Opensearch Dashboards
+master_user_password = "pbkdf2_stretch_1000$AFx2zlGri3RsRYeuA7HGBD8TIF2H8iUZ$o2slpevT79pFQAMDjXR/azz1K8ehEN7kFLT+AKaIBYU="
 
 
 master_node_host_type       = "FLEX"
